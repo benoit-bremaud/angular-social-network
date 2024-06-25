@@ -1,0 +1,12 @@
+{
+  "name": "angular-social-network",
+  "version": "1.0.0",
+  "description": "Angular is better than Somfony",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/angular-social-network').then(() => {
   console.log('Connected to MongoDB');

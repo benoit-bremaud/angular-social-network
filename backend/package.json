@@ -1,10 +1,12 @@
 {
   "name": "angular-social-network",
   "version": "1.0.0",
-  "description": "Angular is better than Somfony",
-  "main": "index.js",
+  "description": "Backend for the Angular Social Network project",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
+    "start": "node src/app.js",
+    "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

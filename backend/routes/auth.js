@@ -8,6 +8,9 @@ const router = express.Router(); // Create a new router using the Router method 
 // Register route
 router.post('/register', async (req, res) => {
   const { username, email, password } = req.body; // Destructure the username, email, and password from the request body sent by the user when they register
+  if (!username || !email || !password) {
+    return res.status(400).send('Please provide all required fields'); // Send a 400 response if the username, email, or password is missing in the request body
+  }
   try {
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password using the bcrypt module with a salt of 10 rounds before storing it in the database to ensure that the password is secure
     const user = new User({ username, email, password: hashedPassword }); // Create a new user object with the username, email, and hashed password to store in the database
@@ -31,7 +34,7 @@ router.post('/login', async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).send('Invalid password'); // Send a 401 response if the password provided by the user during login is invalid
     }
-    const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' }); // Generate a token for the user with the user ID using the sign method of the jsonwebtoken module with a secret key and an expiration time of 1 hour
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Generate a token for the user with the user ID using the sign method of the jsonwebtoken module with a secret key and an expiration time of 1 hour
     res.json({ token }); // Send the token in the response as a JSON object when the user logs in successfully
   } catch (error) {
     res.status(400).send('Error logging in'); // Send an error response if there is an error logging in the user or generating the token for the user

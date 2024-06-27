@@ -1,15 +1,18 @@
 import Post from './models/Post.js'; // Import the Post model to interact with the posts collection in the database and to perform CRUD operations on the posts collection
 import authMiddleware from './middleware/authMiddleware.js'; // Import the authMiddleware function to verify the token in the Authorization header of the request before allowing access to the protected route
 import authRouter from './routes/auth.js'; // Import the authRouter middleware to handle the authentication routes in the app
+import cors from 'cors'; // Import the cors module to enable CORS in the app
+// import dotenv from 'dotenv'; // Import the dotenv module to read environment variables from the .env file
 import express from 'express'; // Import the express module to create an Express app
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; // Import the mongoose module to connect to MongoDB and interact with the database
 
-// Import the mongoose module to connect to MongoDB and interact with the database
+// dotenv.config(); // Load environment variables from the .env file
 
 const app = express(); // Create an Express app
 const port = 3000; // Set the port for the server to listen on
 
-app.use(express.json()); // Parse JSON bodies in the requests
+app.use(express.json()); // Parse JSON bodies in the requests to be available under the req.body property
+app.use(cors()); // Enable CORS in the app to allow cross-origin requests
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/angular-social-network').then(() => {

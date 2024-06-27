@@ -14,6 +14,7 @@ router.post('/register', async (req, res) => {
     await user.save(); // Save the user object in the database using the save method of the user object to register the user
     res.status(201).send(user); // Send a success response with the user object when the user is registered successfully in the database and the user object is saved
   } catch (error) {
+    console.error(error); // Log the error for debugging purposes
     res.status(400).send('Error registering user'); // Send an error response if there is an error registering the user in the database or saving the user object
   }
 }); // Define the register route with a POST method to register a new user in the app by creating a new user object with the username, email, and hashed password and saving the user object in the database

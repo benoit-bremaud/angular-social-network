@@ -1,10 +1,11 @@
 {
   "name": "angular-social-network",
   "version": "1.0.0",
-  "description": "Angular is better than Somfony",
+  "description": "Angular is better than Symfony",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
